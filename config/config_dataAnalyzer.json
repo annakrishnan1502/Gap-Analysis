@@ -1,0 +1,37 @@
+{
+  "CUSTOMERS": {
+    "AURORA": {
+      "PRIMARY_COLUMN": "PAT_ID",
+      "PRIMARY_COLUMN_Path": "Patient/",
+      "PRIMARY_COLUMN_Output": "OutputDir/Output-patient-list.csv",
+      "SELECT": [
+        {
+          "Path": "Diagnosis/",
+          "DataClass": "Diagnosis",
+          "COLUMNS": [
+            "ICD9_CODE:startsWith:['14','15','16','17']",
+            "ICD10_CODE:startsWith:['C','D0','D1','D2','D3','D4']"
+          ],
+          "OPERATOR": "|",
+          "Output": "OutputDir/output-cancer-diagnosis-list.csv"
+
+        },
+        {
+          "Path": "CAssessment/",
+          "DataClass": "CancerAssessment",
+          "COLUMNS": [
+           "BODY_SITE_NAME:constraint:NOTNULL"
+          ],
+          "Output": "OutputDir/output-cancerAssessment.csv"
+
+        }
+      ],
+      "OUTPUT": {
+        "DIR": "OutputDir/",
+        "filename": "output-summary.csv"
+      }
+    }
+  }
+}
+
+
